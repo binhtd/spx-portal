@@ -1,0 +1,51 @@
+<?php
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle('Bento Localization Portal | Jonckers');
+echo $this->doctype();
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head >
+	<?php echo $this->headMeta();?>
+	<?php echo $this->headTitle();?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl('/css/style.css'));?>	
+	<?php echo $this->headStyle();?>
+	<?php echo $this->headScript()->prependFile($this->baseUrl("/javascripts/jquery-1.6.2.min.js"));?>
+</head>
+<body>
+<div id="page">
+	<div id="header">
+		<div style="float:right; margin-right:11px">
+			<a href="http://www.jonckers.com/">
+				<img src="<?php echo $this->baseUrl('/images/logo1.jpg')?>" />
+			</a>
+		</div>
+		<div id="headerright">
+			<p style="clear:both; height:50px"/>
+			<ul id="nav">
+				<li><a href="<?php echo $this->baseUrl('/index/documentation/');?>">Documentation</a> </li>
+				<li> | </li>
+				<li ><a href="<?php echo $this->baseUrl('/index/contact/');?>">Contact Us</a>
+			</ul>
+		</div>
+		<div id="headerimg">
+			<img src="<?php echo $this->baseUrl('/images/logo.jpg');?>" />
+		</div>
+	</div>
+	<br style="clear:both;" />
+	<div class="header_img"><img src="<?php echo $this->baseUrl('/images/localization_services_header.jpg');?>" /></div>	
+
+	<?php echo $this->showMenuDependingRole();?>
+
+	<div id="right_content" class="narrowcolumn">	          
+		<div>
+			<?php echo $this->layout()->content; ?>
+		</div>	
+	</div>
+
+	<div id="footer">
+		&nbsp;
+	</div>
+</div>
+	<p class="footertext">&copy; 2011, Jonckers Translation and Engineering. All Rights Reserved. </p>
+</body>
+</html>

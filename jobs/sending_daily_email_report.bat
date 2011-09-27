@@ -1,0 +1,1 @@
+"php.exe" -f "AnsynchronizeSendingEmailDaily.php"

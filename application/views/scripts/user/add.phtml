@@ -1,0 +1,253 @@
+<?php if (isset($this->insertErrorMessage)) :?>
+<ul class="errors">
+	<li><?php echo $this->insertErrorMessage; ?></li>
+</ul>
+<?php endif;?>
+<?php				
+	echo $this->form;
+?>
+
+<?php
+$this->title = "Add New User |";
+$this->headTitle($this->title);
+$this->headScript()->appendFile($this->baseUrl('/javascripts/jquery-ui-1.8.10.custom.min.js'));
+$this->headLink()->prependStylesheet($this->baseUrl('/css/base/jquery.ui.all.css'));
+
+$this->headScript()->appendFile($this->baseUrl('/javascripts/custom_alert_box/jquery.easing.1.3.js'));
+$this->headScript()->appendFile($this->baseUrl('/javascripts/custom_alert_box/alertbox.js'));
+?>
+<?php
+$this->headStyle()->captureStart();
+?>
+dt{clear:both;}
+dd{float:left;margin-left:10px;width:460px;}
+<?php
+$this->headStyle()->captureEnd();
+?>
+<?php 
+$this->headScript()->captureStart();
+?>			
+	$(function() {						
+		$('#UserName').focus();
+		$( "#JtepmEmail" ).autocomplete({
+			source: ["<?php echo join("\", \"", $this->jtepmEmailList); ?>"]
+		});
+		
+		$('dl').append('<div style="clear:both" />');
+		
+		if( $("#UserRole-Jtepm").is(':checked')){
+			$("#JtepmEmail-label").hide();			
+			$("#JtepmEmail-element").hide();	
+			$("#TargetlanguageID-label").hide();
+			$("#TranslatorTargetlanguageID").closest("dd").hide();				
+		}
+
+		$("#UserRole-Jtepm").click(function(){
+			$("#JtepmEmail-label").hide();			
+			$("#JtepmEmail-element").hide();	
+			$("#SourcelanguageID-label").hide();
+			$("#TranslatorTargetlanguageID").closest("dd").hide();	
+		});
+			
+		
+		if( $("#UserRole-Translator").is(':checked')){
+			$("#SourcelanguageID-label").show();
+			$("#TranslatorTargetlanguageID").show();
+			$("#JtepmEmail-label").hide();
+			$("#JtepmEmail-element").hide();					
+		}
+		
+		$("#UserRole-Translator").click(function(){
+			$("#SourcelanguageID-label").show();
+			$("#TranslatorTargetlanguageID").closest("dd").show();
+			$("#TranslatorTargetlanguageID").show();
+			$("#JtepmEmail-label").hide();
+			$("#JtepmEmail-element").hide();					
+		});	
+		
+		if( $("#UserRole-Client").is(':checked')){			
+			$("#JtepmEmail-label").show();
+			$("#JtepmEmail-element").show();	
+			$("#SourcelanguageID-label").hide();
+			$("#TranslatorTargetlanguageID").hide();
+		}
+		
+		$("#UserRole-Client").click(function(){			
+			$("#JtepmEmail-label").show();
+			$("#JtepmEmail-element").show();	
+			$("#SourcelanguageID-label").hide();
+			$("#TranslatorTargetlanguageID").closest("dd").hide();
+		});
+		
+		createTargetLanguage();
+		loadTargetLanguage();	
+		var str = "";
+		var sourceLanguageTargetLanguage = new Array();
+		var hasDataBefore = false;
+		var targetLanguage = new Array();
+		function loadTargetLanguage(){
+			$("#TranslatorTargetlanguageID :input").each(function(){
+				if($(this).is(':checked')){									
+					$(this).triggerHandler("click");
+					$(this).attr('checked', true);					
+				}
+			});
+		}
+				
+		function createTargetLanguage(){
+			$("#TranslatorTargetlanguageID :input").each(function(){
+				$(this).click(function(){				
+					if($(this).is(':checked')){						
+						$(this).closest("label").append($('<a id="hrefTargetLanguage_' + $(this).val() + '"> [Edit Target Language(s)]</a>'));						
+						var sourceLanguage = $(this).val();
+						
+						<?php foreach($this->languageIsShowInTranslatorList as $languageTarget):?>
+							$("#targetlanguageID_<?php echo $languageTarget->LanguageID?>").die("click");
+							$("#targetlanguageID_<?php echo $languageTarget->LanguageID?>").live("click", function(){								
+								
+								if(sourceLanguageTargetLanguage.length == 0 && !hasDataBefore){								
+									if($("#hiddenSourceTargetLanguage_" + $(this).closest("div").attr("id").split("_")[1]).length != 0){									
+										hasDataBefore = true;
+										var sourceTarget = $("#hiddenSourceTargetLanguage_" +$(this).closest("div").attr("id").split("_")[1]).val();
+										if(sourceTarget !=""){
+											sourceLanguageTargetLanguage = sourceTarget.split(",");
+										}
+										else{
+											sourceLanguageTargetLanguage = new Array();
+										}
+										sourceLanguageTargetLanguage = (sourceTarget !="" ? sourceTarget.split(",") : new Array());
+									}
+								}
+								
+								if( (jQuery.inArray($(this).val(), sourceLanguageTargetLanguage) !=-1)&& !$(this).attr("checked")) {
+									var removeItem = $(this).val();
+									
+									sourceLanguageTargetLanguage = jQuery.grep(sourceLanguageTargetLanguage, function(value) {
+										return value != removeItem;
+									});
+																									
+								}
+								else{																
+									sourceLanguageTargetLanguage.push($(this).val());
+								}					
+							});	
+						<?php endforeach;?>
+						
+						$("#hrefTargetLanguage_" + $(this).val()).click(function(){							
+							var refillSourceLanguageTargetLanguage = new Array();
+							if($("#hiddenSourceTargetLanguage_" + $(this).attr("id").split("_")[1]).length != 0){
+								refillSourceLanguageTargetLanguage = ($("#hiddenSourceTargetLanguage_" +$(this).attr("id").split("_")[1]).val()).split(",");
+								sourceLanguageTargetLanguage = refillSourceLanguageTargetLanguage;
+							}
+							
+							str = 
+							"<div  id=\"divTargetLanguage_"+ sourceLanguage + "\" style=\"width: 400px; height: 167px; overflow: scroll; border: 1px solid rgb(127, 157, 185);\">";
+								<?php foreach($this->languageIsShowInTranslatorList as $languageTarget):?>
+									targetLanguage.push( { LanguageID:<?php echo $languageTarget->LanguageID;?>, LanguageName :'<?php echo $languageTarget->LanguageName;?>'});
+									if(sourceLanguage !=<?php echo $languageTarget->LanguageID;?>){
+										str += "<label for=\"targetlanguageID_<?php echo $languageTarget->LanguageID;?>\">";
+										str += "<input name=\"targetlanguageID[]\" id=\"targetlanguageID_<?php echo $languageTarget->LanguageID;?>\" value=\"<?php echo $languageTarget->LanguageID;?>\" type=\"checkbox\""; 									
+										
+										for(var i=0; i<refillSourceLanguageTargetLanguage.length; i++){
+											if(refillSourceLanguageTargetLanguage[i] == <?php echo $languageTarget->LanguageID;?>){
+												str += " checked=\"checked\"";
+											}
+										}
+										str += "><?php echo $languageTarget->LanguageName;?></label><br>";							
+									}
+								<?php endforeach;?>
+							str += "</div>";
+																			
+							csscody.confirm(' <h1> Target Language.</h1>' + str,
+							{
+								onComplete : function(){
+									if(arguments[0]){											
+										if($("#hiddenSourceTargetLanguage_" +sourceLanguage).length == 0){										
+											if(sourceLanguageTargetLanguage.length >0){
+												$("#User").append($('<input value="' + sourceLanguageTargetLanguage.join(",") + '"' +  ' type="hidden" id ="hiddenSourceTargetLanguage_' + sourceLanguage + '" name="hiddenSourceTargetLanguage_' +sourceLanguage + '">'));											
+											}	
+										}
+										else{
+											$("#hiddenSourceTargetLanguage_" +sourceLanguage).val(sourceLanguageTargetLanguage.join(","));
+										}
+										
+										var listLanguageNames = Array();
+							
+										for(var i=0; i<sourceLanguageTargetLanguage.length; i++){
+											for(var j=0; j<targetLanguage.length; j++){
+												if(sourceLanguageTargetLanguage[i] == targetLanguage[j].LanguageID){
+													listLanguageNames.push(targetLanguage[j].LanguageName);
+													break;	
+												}
+											}
+										}
+										
+										if(listLanguageNames.length > 0){	
+											if($("#listLanguagesName" + sourceLanguage).length > 0){
+												$("#listLanguagesName" + sourceLanguage).text(listLanguageNames.join(", "));
+											}
+											else{
+												$("#SourcelanguageID-"+sourceLanguage).closest('label').after($("<br><div style=\"margin-left:25px\" id=\"listLanguagesName" + sourceLanguage + "\">" + listLanguageNames.join(", ") + "</div>"));										
+											}
+										}
+										else{
+											if($("#listLanguagesName" + sourceLanguage).length > 0){
+												$("#listLanguagesName" + sourceLanguage).prev("br").remove();
+												$("#listLanguagesName" + sourceLanguage).remove();
+											}
+										}
+									}
+								},
+								textBoxBtnOk: "Save Changes"
+							});
+							
+							sourceLanguageTargetLanguage = [];
+							hasDataBefore = false;
+							return false;
+						});					
+					}
+					else{						
+						$(this).closest("label").children("a").each(function(){
+							$(this).remove();
+						});
+					}				
+				});	
+			});			
+		}
+	});
+<?php
+$this->headScript()->captureEnd();
+?>
+<?php
+$this->headStyle()->captureStart();
+?>
+#alert-Box {  
+	padding-bottom: 24px; background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-bottom.png');?>) bottom left no-repeat !important;
+    background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-bottom.gif');?>) bottom left no-repeat;
+}
+#alert-InBox {
+padding-top: 15px;  
+background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-top.png');?>) top left no-repeat !important;	
+background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-top.png');?>) top left no-repeat;	
+}
+#alert-BoxContent {
+	background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-body.png');?>) top left repeat-y !important;
+  background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-body.gif');?>) top left repeat-y;
+  padding: 0px 20px;}
+#alert-BoxContenedor {
+	padding: 0px 0px 5px 55px;  text-align: left;  font-family:Verdana;  font-size:12px;  color:#000;
+}
+#alert-BoxContenedor h1,#alert-BoxContenedor h2,#alert-BoxContenedor h3,#alert-BoxContenedor b,#alert-BoxContenedor strong{
+  text-align: left;  font-family:Verdana;  font-size:12px;  color:#000;  font-weight:bold;  margin:0px;  padding:0px;}
+#alert-Buttons{ text-align:right;}
+#alert-Buttons input {margin: 10px 10px;}
+#alert-BoxContenedor #BoxPromptInput{  margin-top:5px;}
+#alert-Box .BoxAlert { 
+background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/dialog-warning.png');?>) top left no-repeat;}
+#alert-Box .BoxConfirm {  background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/button_plus_blue.png');?>) top left no-repeat;}
+#alert-Box .BoxPrompt {  background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/dialog-help.png');?>) top left no-repeat;}
+#alert-Box .BoxInfo {  background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/info.gif');?>) top left no-repeat;}
+#alert-Box .BoxError {background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/dialog-error.png');?>) top left no-repeat;}
+<?php
+$this->headStyle()->captureEnd();
+?>

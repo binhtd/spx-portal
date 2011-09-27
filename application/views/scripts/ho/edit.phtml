@@ -1,0 +1,365 @@
+<?php
+$this->title = "Edit HO |";
+$this->headTitle($this->title);
+
+$this->headScript()->appendFile($this->baseUrl('/javascripts/jquery-ui-1.8.16.custom.min.js'));
+$this->headScript()->appendFile($this->baseUrl('/javascripts/custom_alert_box/jquery.easing.1.3.js'));
+$this->headScript()->appendFile($this->baseUrl('/javascripts/custom_alert_box/alertbox.js'));
+$this->headLink()->prependStylesheet($this->baseUrl('/css/ui-lightness/jquery-ui-1.8.10.custom.css'));
+?>
+<p class="warning" id="processRunningLabel">
+	<img src="<?php echo $this->baseUrl('/images/ajax-loader.gif');?>"/>
+	process is running
+</p>
+<?php if (isset($this->duplicateSourceAndTargetLanguageErrorMessage)) :?>
+<ul class="errors">
+	<li><?php echo $this->duplicateSourceAndTargetLanguageErrorMessage; ?></li>
+</ul>
+<?php endif;?>
+<?php if (isset($this->hoStatusDependOnNumberOfTargetStringLocalization)) :?>
+<ul class="errors">
+	<li><?php echo $this->escape($this->hoStatusDependOnNumberOfTargetStringLocalization); ?></li>
+</ul>
+<?php endif;?>
+<?php if (isset($this->editErrorMessage)) :?>
+<ul class="errors">
+	<li><?php echo $this->editErrorMessage; ?></li>
+</ul>
+<?php endif;?>
+<form method="post" action="<?php echo $this->url(); ?>" enctype="application/x-www-form-urlencoded" id="HO">
+	<dl class="zend_form">
+		<dt id="HandOffTitle-label">
+			<label class="required" for="HandOffTitle">Source String</label>
+		</dt>
+		<dd id="HandOffTitle-element">
+			<input type="text" size="75" value="<?php echo $this->form->HandOffTitle->getValue(); ?>" id="HandOffTitle" name="HandOffTitle">
+			<?php if( count($this->form->HandOffTitle->getMessages()) >0 ): ?>
+				<ul class="errors">
+					<?php foreach($this->form->HandOffTitle->getMessages() as $error): ?>
+						<li><?php echo $this->escape($error); ?></li>
+					<?php endforeach;?>
+				</ul>
+			<?php endif;?>
+		</dd>
+		<dt id="HandOffStartProject-label">
+			<label class="required" for="HandOffStartProject">Handoff Date</label>
+		</dt>
+		<dd id="HandOffStartProject-element">
+			<input type="text" size="20" value="<?php echo $this->escape($this->form->HandOffStartProject->getValue()); ?>" id="HandOffStartProject" name="HandOffStartProject">
+			<?php if( count($this->form->HandOffStartProject->getMessages()) >0 ): ?>
+				<ul class="errors">
+					<?php foreach($this->form->HandOffStartProject->getMessages() as $error): ?>
+						<li><?php echo $this->escape($error); ?></li>
+					<?php endforeach;?>
+				</ul>
+			<?php endif;?>
+
+		</dd>
+				
+		<div style="float:left; width:300px">
+			<dt id="HandOffSourceLanguageID-label" style="width:180px">
+				<label class="required" for="HandOffSourceLanguageID">Handoff Source LanguageID</label>
+			</dt>
+			
+			<dd id="HandOffSourceLanguageID-element" style="float: left;">	
+				<div style="width: 250px; height:167px; border: 1px solid #7F9DB9;">
+					<select style="width: 250px; height:165px; border: 0px solid white" size="10" id="HandOffSourceLanguageID" name="HandOffSourceLanguageID">
+						<?php foreach($this->sourceListlanguage as $language):?>				
+							<option label="<?php echo $language->LanguageName; ?>" value="<?php echo $language->LanguageID; ?>"
+							<?php if($this->form->HandOffSourceLanguageID->getValue() == $language->LanguageID){  
+										echo "selected='selected'";
+									}
+							?>
+							title="you only can select one source LanguageID">
+								<?php echo $language->LanguageName; ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+				<?php if( count($this->form->HandOffSourceLanguageID->getMessages()) >0 ): ?>
+					<ul class="errors">
+						<?php foreach($this->form->HandOffSourceLanguageID->getMessages() as $error): ?>
+							<li><?php echo $error; ?></li>
+						<?php endforeach;?>
+					</ul>
+				<?php endif;?>				
+			</dd>
+		</div>
+		<div  style="float:left; width:300px">
+			<dt id="HandOffListTargetLanguageID-label" style="width:180px; margin-left:15px">
+				<label class="required" for="HandOffListTargetLanguageID">Handoff Target LanguageID</label>
+			</dt>
+					
+			<dd id="HandOffListTargetLanguageID-element" style="float: left;">
+				<div style="width: 250px; height:167px; overflow:scroll; border: 1px solid #7F9DB9;" id="HandOffListTargetLanguageID">
+					<?php foreach($this->targetListlanguage as $language):?>				
+						<label for="HandOffListTargetLanguageID-<?php echo $language->LanguageID; ?>">
+							<input id="HandOffListTargetLanguageID-<?php echo $language->LanguageID; ?>" type="checkbox" value="<?php echo $language->LanguageID; ?>" name="HandOffListTargetLanguageID[]"
+								<?php 												
+									if($this->form->HandOffListTargetLanguageID->getValue() !=""){
+										foreach( $this->form->HandOffListTargetLanguageID->getValue() as $targetLanguage){
+											if($targetLanguage == $language->LanguageID){
+												echo "checked='checked'";
+											}
+										}
+									}
+								?>
+							>
+							<?php echo $language->LanguageName; ?>
+						</label>
+						<br/>
+					<?php endforeach; ?>					
+				</div>			
+				<?php if( count($this->form->HandOffListTargetLanguageID->getMessages()) >0 ): ?>
+						<ul class="errors">
+							<?php foreach($this->form->HandOffListTargetLanguageID->getMessages() as $error): ?>
+								<li><?php echo $error; ?></li>
+							<?php endforeach;?>
+						</ul>
+				<?php endif;?>
+			</dd>
+		</div>
+		
+		<?php if($this->showHoStatusDropDown):?>
+			<dt id="HandOffStatus-label">
+				<label class="required" for="HandOffStatus">Handoff Status</label>
+			</dt>
+			<dd id="HandOffStatus-element">
+				<select id="HandOffStatus" name="HandOffStatus">
+					<?php foreach($this->hostatus as $status):?>
+						<option label="<?php echo $status; ?>" value="<?php echo $status; ?>"	
+							<?php if($this->form->HandOffStatus->getValue() == $status){ echo "selected='selected'";}?>>
+							<?php echo $status; ?>
+						</option>
+					<?php endforeach;?>
+				</select>
+				<label for="NotifyHoStatusChange" id="NotifyHoStatusChangeLabel">
+					<input type="checkbox" name="NotifyHoStatusChange" value="1" id="NotifyHoStatusChange" checked="checked">
+					Send an email notification on HO status change
+				</label>
+				<?php if( count($this->form->HandOffStatus->getMessages()) >0 ): ?>
+					<ul class="errors">
+						<?php foreach($this->form->HandOffStatus->getMessages() as $error): ?>
+							<li><?php echo $error; ?></li>
+						<?php endforeach;?>
+					</ul>
+				<?php endif;?>			
+			</dd>
+		<?php endif;?>		
+		<script type="text/javascript">
+			var targetLanguageEditedByOneTranslator = new Array();
+		</script>
+		<?php if($this->showTargetLocalizationStrings):?>			
+			<?php foreach($this->handOffTargetLanguages as $handOffTargetLanguage):?>
+					<?php if($handOffTargetLanguage->TranslatedByTranslator == "Y"):?>
+						<script type="text/javascript">
+							targetLanguageEditedByOneTranslator.push({"TargetLanguageID":'<?php echo $handOffTargetLanguage->LanguageID?>',
+								"TargetLanguageName":'<?php echo $handOffTargetLanguage->LanguageName?>'}
+							);							
+						</script>
+					<?php endif;?>
+					<dt id="HandOffTargetLanguage-<?php echo $handOffTargetLanguage->LanguageID?>">
+						<label class="required" for="handOffTargetLanguage-<?php echo $handOffTargetLanguage->LanguageID?>">
+							<?php echo $handOffTargetLanguage->LanguageName?>
+						</label>
+					</dt>
+					<dd id="HandOffTargetLanguage-Element-<?php echo $handOffTargetLanguage->LanguageID?>">
+						<input type="text" size="75" name="HandOffTargetLanguage-Element-input-<?php echo $handOffTargetLanguage->LanguageID?>" id="HandOffTargetLanguage-Element-input-<?php echo $handOffTargetLanguage->LanguageID?>" value="<?php echo $handOffTargetLanguage->	HandBackStringLocalization;?>" 
+						<?php echo(!$handOffTargetLanguage->AllowEdit?  "disabled": "") ?>
+						>
+					</dd>
+			<?php endforeach;?>
+		<?php endif;?>			
+		<dt id="HandOffInstruction-label">
+			<label class="required" for="HandOffInstruction">Handoff Instruction</label>
+		</dt>
+		<dd id="HandOffInstruction-element" style="clear:left; margin-left:0px">
+			<?php echo $this->partial('/partials/_editor.phtml', array("webeditordata" => $this->form->content->getValue()))?>
+			<?php if( count($this->form->content->getMessages()) >0 ): ?>
+				<ul class="errors">
+					<?php foreach($this->form->content->getMessages() as $error): ?>
+						<li><?php echo $error; ?></li>
+					<?php endforeach;?>
+				</ul>
+			<?php endif;?>
+
+		</dd>
+		
+		<dt id="SignatureName-label">
+			<label class="required" for="SignatureName">Signature/Name</label>
+		</dt>
+		<dd id="SignatureName-element">
+			<input type="text" size="74" maxlength="100" value="<?php echo $this->form->SignatureName->getValue(); ?>" id="SignatureName" name="SignatureName" <?php echo(!$handOffTargetLanguage->AllowEdit?  "disabled": "") ?>>
+			<?php if( count($this->form->SignatureName->getMessages()) >0 ): ?>
+				<ul class="errors">
+					<?php foreach($this->form->SignatureName->getMessages() as $error): ?>
+						<li><?php echo $error; ?></li>
+					<?php endforeach;?>
+				</ul>
+			<?php endif;?>
+
+		</dd>
+		
+		<dd id="hoaddlistbuttonaction">		
+			<input type="submit" value="<?php echo $this->SAVE_HO; ?>" id="submitbutton" name="action">			
+			<input type="submit" value="<?php echo $this->CANCEL; ?>" id="cancelbutton" name="action">
+		</dd>
+		<input type="hidden" id="HandOffID" value="0" name="HandOffID">
+		<input type="hidden" id="UserID" value="0" name="UserID">		
+		<input type="hidden" id="HandOffTotalNumberOfUploadFiles" value="<?php echo $this->form->getValue('HandOffTotalNumberOfUploadFiles'); ?>" name="HandOffTotalNumberOfUploadFiles">
+		<input type="hidden" id="HandOffFolderLocation" value="<?php echo $this->form->getValue('HandOffFolderLocation'); ?>" name="HandOffFolderLocation">
+			
+	</dl>
+</form>
+<script type="text/javascript">		
+	var targetLanguageIDArray = new Array();
+	var targetLanguageEditedByCurrentTranslator = new Array();
+	$(function(){		
+		for(var i=0; i< targetLanguageEditedByOneTranslator.length; i++){				
+			$("#HandOffTargetLanguage-Element-input-" + targetLanguageEditedByOneTranslator[i]["TargetLanguageID"]).bind("change", {"TargetLanguageID": targetLanguageEditedByOneTranslator[i]["TargetLanguageID"], "TargetLanguageName": targetLanguageEditedByOneTranslator[i]["TargetLanguageName"]}, handleChangeEvent);
+		}
+		
+		function handleChangeEvent(event){					
+			if( jQuery.inArray(event.data.TargetLanguageID, targetLanguageIDArray) <0){
+				targetLanguageIDArray.push(event.data.TargetLanguageID);
+				
+				targetLanguageEditedByCurrentTranslator.push({"TargetLanguageID": event.data.TargetLanguageID,
+						"TargetLanguageName":event.data.TargetLanguageName});							
+			}
+		}
+		
+		$('#HandOffTitle').focus();		
+		$('#HandOffStartProject').datepicker({
+			showOn: "button",
+			buttonImage: "<?php echo $this->baseUrl('/images/calendar.gif');?>",
+			dateFormat: 'yy-mm-dd',
+			buttonImageOnly: true
+		});
+				
+		<?php if (!$this->allowEditFieldInHoRecord):?>
+			$("#HandOffTitle").attr('disabled','disabled');
+			$("#HandOffStartProject").attr('disabled','disabled');
+			$("#HandOffSourceLanguageID").attr('disabled','disabled');
+			$("#SignatureName").attr('disabled','disabled');			
+			$("#HandOffSourceLanguageID option:selected").each(function(){
+				$(this).css({'background-color':'#3169C6'});
+			});
+			
+			$("#HandOffSourceLanguageID").css({'background-color':'#EFEBE7'});
+			$("#HandOffListTargetLanguageID input").attr('disabled','disabled');
+			$("#HandOffListTargetLanguageID").css({'background-color':'#EFEBE7'});
+			$(".ui-datepicker-trigger").unbind("click");
+			
+			$("#content_rte").contents().find('html').keypress(function(e){
+				return false;				
+			});
+			
+			if ( $.browser.msie ){
+				var position = $("#content_rte").position();
+				var style = "height:" + 90 + "px;width:" + $("#content_rte").width() +"px;z-index:10;background:url(x.gif);";
+				$('#content_rte').after("<div style='" + style + "position:relative" + "'></div>");
+				$('#content_rte').wrap("<div style='" + style + "position:absolute" + "'/>");			
+			}
+		<?php endif;?>
+		if($('#HandOffStatus').val() == '<?php echo Application_Model_DbTable_HOs::HO_CREATED;?>'){
+			$('#NotifyHoStatusChangeLabel').hide();
+			$('#NotifyHoStatusChange').removeAttr('checked');
+		}
+		$('#HandOffStatus').change(function(){
+			if ( ($('#HandOffStatus').val() == '<?php echo Application_Model_DbTable_HOs::HO_UPLOADED;?>') || 
+				($('#HandOffStatus').val() == '<?php echo Application_Model_DbTable_HOs::HO_CANCELLED;?>') ||
+				($('#HandOffStatus').val() == '<?php echo Application_Model_DbTable_HOs::HO_CLOSED;?>') ||
+				($('#HandOffStatus').val() == '<?php echo Application_Model_DbTable_HOs::HB_COMPLETED;?>')){
+					$('#saveuploadlaterbutton').attr('disabled','disabled');				
+			}	
+			else{
+				$('#saveuploadlaterbutton').removeAttr('disabled');
+			}
+			
+			if (($('#HandOffStatus').val() == '<?php echo Application_Model_DbTable_HOs::HO_CANCELLED;?>') ||
+				($('#HandOffStatus').val() == '<?php echo Application_Model_DbTable_HOs::HO_CLOSED;?>') ||
+				($('#HandOffStatus').val() == '<?php echo Application_Model_DbTable_HOs::HB_COMPLETED;?>') ||
+				($('#HandOffStatus').val() == '<?php echo Application_Model_DbTable_HOs::HO_CREATED;?>')){
+					$('#NotifyHoStatusChangeLabel').hide();
+					$('#NotifyHoStatusChange').removeAttr('checked');
+			}	
+			else{
+				$('#NotifyHoStatusChangeLabel').show();
+			}						
+		});
+	});
+	
+	$("#submitbutton").click(function(){
+		if(targetLanguageEditedByCurrentTranslator.length > 0){
+			var duplicateLocalizationLanguage = "<ul>";		
+			for(var i=0; i< targetLanguageEditedByCurrentTranslator.length; i++){
+				duplicateLocalizationLanguage += "<li>" + targetLanguageEditedByCurrentTranslator[i]["TargetLanguageName"] + ":" +			
+				$("#HandOffTargetLanguage-Element-input-" + targetLanguageEditedByCurrentTranslator[i]["TargetLanguageID"]).val() + "</li>";
+			}
+			duplicateLocalizationLanguage += "</ul>";
+			csscody.confirm(' <h1> Information Alert.</h1><p>The following strings have already been localized and will be counted in respective Translator\'s Purchase Order. Editing an existing localized string will NOT change original ownership of the string..</p><p>' + duplicateLocalizationLanguage + '</p><p>Please confirm your changes or cancel.</p>',
+			{
+				onComplete : function(){
+					if(arguments[0]){
+						$("#processRunningLabel").show();
+						$("#HO").submit();					
+					}
+				},
+				textBoxBtnOk: "Save Changes"
+			});
+			
+			return false;		
+		}
+		$("#processRunningLabel").show();
+	});
+		
+	$("#HO").submit(function(e){			
+		var targetLanguageIDs = $("#HandOffListTargetLanguageID-element :input");
+		var handOffSourceLanguageID = $("#HandOffSourceLanguageID").val();
+		var isDuplicateBetWeenSourceLanguageAndTargetLanguage = false;
+		for(var i= 0; i<targetLanguageIDs.length; i++){
+			if($(targetLanguageIDs[i]).is(':checked') && (handOffSourceLanguageID == $(targetLanguageIDs[i]).val())){
+				alert(jQuery.trim($("#HandOffSourceLanguageID option:selected").text()) + " language is duplicated in source language and target language");
+				isDuplicateBetWeenSourceLanguageAndTargetLanguage = true;
+			}
+		}
+		
+		if(isDuplicateBetWeenSourceLanguageAndTargetLanguage){
+			e.preventDefault();
+			return false;			
+		}		
+	});	
+</script>
+<?php
+$this->headStyle()->captureStart();
+?>
+#alert-Box {  
+	padding-bottom: 24px; background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-bottom.png');?>) bottom left no-repeat !important;
+    background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-bottom.gif');?>) bottom left no-repeat;
+}
+#alert-InBox {
+padding-top: 15px;  
+background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-top.png');?>) top left no-repeat !important;	
+background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-top.png');?>) top left no-repeat;	
+}
+#alert-BoxContent {
+	background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-body.png');?>) top left repeat-y !important;
+  background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/bg-box-body.gif');?>) top left repeat-y;
+  padding: 0px 20px;}
+#alert-BoxContenedor {
+	padding: 0px 0px 5px 55px;  text-align: left;  font-family:Verdana;  font-size:12px;  color:#000;
+}
+#alert-BoxContenedor h1,#alert-BoxContenedor h2,#alert-BoxContenedor h3,#alert-BoxContenedor b,#alert-BoxContenedor strong{
+  text-align: left;  font-family:Verdana;  font-size:12px;  color:#000;  font-weight:bold;  margin:0px;  padding:0px;}
+#alert-Buttons{ text-align:right;}
+#alert-Buttons input {margin: 10px 10px;}
+#alert-BoxContenedor #BoxPromptInput{  margin-top:5px;}
+#alert-Box .BoxAlert { 
+background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/dialog-warning.png');?>) top left no-repeat;}
+#alert-Box .BoxConfirm {  background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/dialog-warning.png');?>) top left no-repeat;}
+#alert-Box .BoxPrompt {  background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/dialog-help.png');?>) top left no-repeat;}
+#alert-Box .BoxInfo {  background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/info.gif');?>) top left no-repeat;}
+#alert-Box .BoxError {background: url(<?php echo $this->baseUrl('/javascripts/custom_alert_box/images/dialog-error.png');?>) top left no-repeat;}
+<?php
+$this->headStyle()->captureEnd();
+?>

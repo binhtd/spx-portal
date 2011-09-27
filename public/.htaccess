@@ -1,0 +1,14 @@
+SetEnv APPLICATION_ENV production
+php_value upload_max_filesize 1024M
+php_value post_max_size 1024M
+php_value memory_limit 1024M
+php_value max_execution_time 1800
+php_value max_input_time 1800
+
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/favicon.ico$ [OR]
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]

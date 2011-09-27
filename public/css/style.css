@@ -1,0 +1,531 @@
+html {
+    background: url("../images/bg.gif") repeat-x scroll 0 -12px transparent;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial;
+    font-size: 62.5%;
+    text-align: center;
+}
+#page {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    font-size: 11px;
+    text-align: left;
+}
+#header {
+    height: 90px;
+}
+#content {
+    font-size: 12px;
+}
+
+h1, h2, h3 {
+    font-family: 'Trebuchet MS','Lucida Grande',Verdana,Arial,Sans-Serif;
+    font-weight: bold;
+}
+h1 {
+    font-size: 4em;
+    text-align: center;
+}
+
+h2 {
+    font-size: 30px;
+    padding-bottom: 0;
+}
+
+h3 {
+    font-size: 1.3em;
+}
+
+#sidebar {
+    font: 1em 'Lucida Grande',Verdana,Arial,Sans-Serif;
+}
+
+a, h2 a:hover, h3 a:hover {
+    color: #0066CC;
+    text-decoration: none;
+}
+a:hover {
+    color: #114477;
+    text-decoration: underline;
+}
+
+body {
+    margin: 0 0 20px;
+    padding: 20px 0 0;
+}
+#page {
+    margin: 20px auto 10px;
+    padding: 0;
+    width: 865px;
+}
+#header {
+    margin: 0 0 0 1px;
+    padding: 0;
+    width: 865px;
+}
+.narrowcolumn {
+    float: left;
+    margin: 0;
+    padding: 0 20px 5px;
+    width: 630px;
+}
+.widecolumn {
+    margin: 5px 0 0 150px;
+    padding: 10px 0 20px;
+    width: 450px;
+}
+.post {
+    margin: 0 0 40px;
+    text-align: justify;
+}
+#headerimg {
+    margin: 19px 0 0;
+}
+#headerright {
+    float: right;
+    width: 280px;
+}
+#lics {
+    display: block;
+    float: left;
+}
+#oncert {
+    display: block;
+    float: left;
+    margin-left: 10px;
+}
+#search {
+    float: right;
+    height: 20px;
+    margin-top: 15px;
+    width: 320px;
+}
+
+.clear {
+    clear: both;
+}
+#footer {
+    clear: both;
+    margin: 0 auto;
+    padding: 0;
+    width: 760px;
+}
+#footer p {
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+}
+
+h2.pagetitle {
+    margin-top: 30px;
+    text-align: center;
+}
+#sidebar h2 {
+    margin: 5px 0 0;
+    padding: 0;
+}
+h3 {
+    margin: 30px 0 0;
+    padding: 0;
+}
+h3.comments {
+    margin: 40px auto 20px;
+    padding: 0;
+}
+p img {
+    max-width: 100%;
+    padding: 0;
+}
+img.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+img.alignright {
+    display: inline;
+    margin: 0 0 2px 7px;
+    padding: 4px;
+}
+img.alignleft {
+    display: inline;
+    margin: 0 7px 2px 0;
+    padding: 4px;
+}
+.alignright {
+    float: right;
+}
+.alignleft {
+    float: left;
+}
+html > body .entry ul {
+    margin-left: 0;
+    padding: 0 0 0 10px;
+    text-indent: -10px;
+}
+html > body .entry li {
+    margin: 7px 0 8px 10px;
+    padding-left: 6px;
+}
+.entry ol {
+    margin: 0;
+    padding: 0 0 0 35px;
+}
+.entry ol li {
+    margin: 0;
+    padding: 0;
+}
+.postmetadata ul, .postmetadata li {
+    display: inline;
+    list-style-image: none;
+    list-style-type: none;
+}
+#sidebar ul, #sidebar ul ol {
+    margin: 0;
+    padding: 0;
+}
+#sidebar ul li {
+    list-style-image: none;
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+#sidebar ul p, #sidebar ul select {
+    margin: 5px 0 8px;
+}
+#sidebar ul ul, #sidebar ul ol {
+    margin: 5px 0 0 10px;
+}
+#sidebar ul ul ul, #sidebar ul ol {
+    margin: 0 0 0 10px;
+}
+ol li, #sidebar ul ol li {
+    list-style: decimal outside none;
+}
+#sidebar ul ul li, #sidebar ul ol li {
+    margin: 3px 0 0;
+    padding: 0;
+}
+#searchform {
+    margin: 10px auto;
+    padding: 5px 3px;
+    text-align: center;
+}
+#sidebar #searchform #s {
+    padding: 2px;
+    width: 108px;
+}
+#sidebar #searchsubmit {
+    padding: 1px;
+}
+.entry form {
+    text-align: center;
+}
+
+#commentform input {
+    margin: 5px 5px 1px 0;
+    padding: 2px;
+    width: 170px;
+}
+#commentform {
+    margin: 5px 10px 0 0;
+}
+#commentform textarea {
+    padding: 2px;
+    width: 100%;
+}
+#respond:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+#commentform #submit {
+    float: right;
+    margin: 0 0 5px auto;
+}
+
+#sidebar {
+    background: url("../images/sidebar_bg.gif") repeat-x scroll 0 0 transparent;
+    float: left;
+    padding: 0;
+    width: 175px;
+}
+#sidebar form {
+    margin: 0;
+}
+
+acronym, abbr {
+    border-bottom: 1px dashed #999999;
+}
+blockquote {
+    /*comment when create document*/
+	/*border-left: 5px solid #DDDDDD;*/
+    margin: 15px 30px 0 10px;
+    padding-left: 20px;
+}
+blockquote cite {
+    display: block;
+    margin: 5px 0 0;
+}
+.center {
+    text-align: center;
+	word-break:break-all;
+}
+.hidden {
+    display: none;
+}
+.screen-reader-text {
+    left: -1000em;
+    position: absolute;
+}
+
+a img {
+    border: medium none;
+}
+.navigation {
+    display: block;
+    margin-bottom: 60px;
+    margin-top: 10px;
+    text-align: center;
+}
+.aligncenter, div.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.header_img {
+    margin-bottom: 17px;
+}
+div.header_img, #sidebar {
+    margin-left: 11px;
+}
+.footertext {
+    font-size: 10px;
+    margin: 0;
+}
+ul#nav {
+    margin: 7px 0 0;
+    padding: 0;
+}
+ul#nav li {
+    float: left;
+    list-style: none outside none;
+    margin: 5px 3px 8px;
+    position: relative;
+}
+ul#nav li a {
+    color: #464646;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+}
+
+#sidebar li h2.widgettitle {
+    background: none repeat scroll 0 0 #464646;
+    border-bottom: 5px solid #A5D1D8;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.1px;
+    margin: 0;
+    padding: 4px 3px 4px 14px;
+    text-transform: uppercase;
+}
+#sidebar li.widget div {
+    padding: 8px 3px 5px 14px;
+}
+#sidebar li.pagenavtitle {
+    letter-spacing: 0.1px;
+    margin: 0;
+}
+#sidebar li.pagenavtitle h2 a {
+    color: #FFFFFF;
+}
+#sidebar li.pagenavtitle h2 a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+#sidebar li.pagenav {
+    background: none repeat scroll 0 0 #00ACCA;
+    border-bottom: 5px solid #A5D1D8;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.1px;
+    margin: 0;
+    padding: 4px 3px 4px 14px;
+    text-transform: uppercase;
+}
+#sidebar li.activepagenav {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+#sidebar li.pagenav a {
+    color: #000000;
+    letter-spacing: 0.1px;
+}
+#sidebar li.pagenav a:hover {
+    color: grey;
+    text-decoration: none;
+}
+#sidebar li.activepagenav a:hover {
+    color: #000000;
+}
+.form_notice {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #000000;
+}
+#White_Paper_form td + td, #Case_Study_form td + td {
+    text-align: left;
+}
+ul.subpage-nav {
+    display: table;
+    margin: 20px 0 25px;
+    padding: 0;
+    width: 640px;
+}
+ul.subpage-nav li {
+    background: none repeat scroll 0 0 #9EC1A5;
+    border-right: 7px solid #FFFFFF;
+    display: table-cell;
+    padding: 5px 15px;
+    text-align: center;
+    text-transform: uppercase;
+}
+ul.subpage-nav li:hover {
+    background: none repeat scroll 0 0 #00ACCA;
+}
+ul.subpage-nav li a {
+    color: #000000;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+/*create login css*/
+.loginmessage{
+	/*margin-left:11px;*/
+	color: #464646;
+	font-size: 12px;
+	font-weight: bold;
+}
+.loginmessage_subtitle{
+	/*margin-left:11px;*/
+	color: #464646;
+	font-size: 12px;
+}
+
+#loginform{
+	width:300px;
+	margin:100px auto;
+	border: 1px solid #CCCCCC;
+	background: url("../images/sidebar_bg.gif") repeat-x scroll 0 0 transparent;
+}
+
+#loginform label,
+#addhb label{
+	float: left;
+	padding-left:14px;
+	width: 80px;
+	font-weight: bold;
+}
+
+#loginform .loginlink{
+	padding-left:14px;
+}
+#loginform  #logintitle{
+	background: none repeat scroll 0 0 #464646;
+	height:17px;
+	padding:4px 3px 4px 4px;
+	margin:0px;
+	color: #FFFFFF;
+}
+#loginform input{
+	width: 180px;
+	margin-bottom: 5px;
+}
+
+#loginform #submitbutton{
+	margin-left: 120px;
+	margin-top: 5px;
+	width: 90px;
+}
+
+br{
+clear: left;
+}
+
+/*create list layout*/
+table.adminlist {
+	background: url("../images/sidebar_bg.gif") repeat-x scroll 0 0 transparent;
+	border-spacing:0px;
+	color:#666666;
+	width:100%;
+	border:1px solid #DDD;
+}
+table.adminlist thead th{
+	text-align:center;
+	color:#f7f7f7;
+}
+
+.container {
+	clear:both;
+	text-align:center;
+	text-decoration:none;
+}
+
+table.adminlist .pagination {
+	display:inline-block;
+	margin:0 auto;
+	padding:0;
+}
+
+.pagination div.limit {
+	float:left;
+	height:22px;
+	line-height:22px;
+	margin:0 10px;
+}
+
+dt {float:left; width:122px;} dd{margin-bottom:10px}
+.zend_form{
+	border:1px solid #00AACE;
+	padding-top:15px;
+	padding-left:15px;
+	margin-top:0px;
+}
+
+/*add style for errors class in zend_form */
+.errors{
+	color:red;
+}
+
+.paginator { padding: 5px; }
+
+#sidebar li.pagenav_active{
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-left: 1px solid rgb(0, 172, 202); 
+	border-right: 1px solid rgb(0, 172, 202);
+}
+
+.bold_text{
+	font-weight: bold;
+}
+.AddNewHoOrHBLink{
+	font-size: 13px;
+	font-weight: bold
+}
+.warning{	
+	font-size: 13px;
+	font-weight: bold;
+	display:none;
+}
+#content-login{
+	margin:0px 11px
+}

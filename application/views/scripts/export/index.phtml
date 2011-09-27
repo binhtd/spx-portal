@@ -1,0 +1,30 @@
+<?php
+$this->title = "Index Export |";
+$this->headTitle($this->title);
+$this->headScript()->appendFile($this->baseUrl('/javascripts/jquery-ui-1.8.16.custom.min.js'));
+$this->headLink()->prependStylesheet($this->baseUrl('/css/ui-lightness/jquery-ui-1.8.10.custom.css'));
+?>
+<?php			
+	echo $this->form;
+?>
+<?php 
+$this->headScript()->captureStart();
+?>
+$(function(){
+	$('#HandOffStartProject').focus();
+	$('#HandOffStartProject').datepicker({
+		showOn: "button",
+		buttonImage: "<?php echo $this->baseUrl('/images/calendar.gif');?>",
+		dateFormat: 'yy-mm-dd',
+		buttonImageOnly: true
+	});	
+	$('#HandOffEndProject').datepicker({
+		showOn: "button",
+		buttonImage: "<?php echo $this->baseUrl('/images/calendar.gif');?>",
+		dateFormat: 'yy-mm-dd',
+		buttonImageOnly: true
+	});	
+});
+<?php
+$this->headScript()->captureEnd();
+?>

@@ -1,0 +1,69 @@
+<?php
+$this->title = "ViewDetail User |";
+$this->headTitle($this->title);
+?>
+<form method="post" action="<?php echo $this->url(array('action'=>'index')); ?>">
+<dl class="zend_form">
+	<dt id="UserID-label">
+		<label class="required" for="UserID">UserID</label>
+	</dt>
+	<dd id="UserID-element">
+		<?php echo $this->escape($this->user->UserID);?>
+	</dd>
+	
+	<dt id="UserName-label">
+		<label class="required" for="UserName">User Name</label>
+	</dt>
+	<dd id="UserName-element">
+		<?php echo $this->escape(utf8_encode($this->user->UserName));?>
+	</dd>
+	
+	<dt id="UserEmail-label">
+		<label class="required" for="UserEmail">User Email</label>
+	</dt>
+	<dd id="UserEmail-element">
+		<?php echo $this->escape($this->user->UserEmail);?>
+	</dd>
+	
+	<dt id="UserLoginName-label">
+		<label class="required" for="UserLoginName">User Login Name</label>
+	</dt>
+	<dd id="UserLoginName-element">
+		<?php echo $this->escape($this->user->UserLoginName);?>
+	</dd>
+	
+	<dt id="IsClient-Y">
+		<label class="optional">User Role</label>
+	</dt>
+	<dd id="IsClient-element">	
+		<?php echo $this->escape($this->user->UserRole);?>				
+	</dd>
+	<?php if(isset($this->targetlanguageID)):?>
+		<dt id="TargetlanguageID-label">
+			<label class="optional">Source/Target</label>
+		</dt>
+		<dd id="TargetlanguageID-element">
+			<div style="width:470px; overflow:auto;">
+			<?php echo $this->escape($this->targetlanguageID);?>				
+			</div>
+		</dd>
+	<?php endif;?>
+	<dt id="JtepmEmail-label">
+		JTE Project Manager Email&nbsp; 
+	</dt>
+	<dd id="JtepmEmail-element">	
+		<label><?php echo $this->user->JtepmEmail!=null ? $this->escape($this->user->JtepmEmail) : "N/A";?></label>
+	</dd>
+	<br />
+	<dt id="UserIsActive-label">
+		<label class="optional" for="UserIsActive" >User Is Active</label>
+	</dt>
+	<dd id="UserIsActive-element">
+		<label><?php echo $this->escape($this->user->UserIsActive);?></label>
+	</dd>
+	
+	<dt id="submit-label">&nbsp;</dt>
+	<dd id="submit-element">
+		<input type="submit" value="Cancel" id="submitbutton" name="submit">
+	</dd>
+</dl>

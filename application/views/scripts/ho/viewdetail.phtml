@@ -1,0 +1,94 @@
+<?php
+$this->title = "ViewDetail HO |";
+$this->headTitle($this->title);
+?>
+<form method="post" action="<?php echo $this->url(array('action'=>'viewdetail')); ?>">
+<dl class="zend_form">
+	<dt id="HandOffID-label">
+		<label class="required" for="HandOffID">Handoff ID</label>
+	</dt>
+	<dd id="HandOffID-element">
+		<?php echo $this->escape($this->ho->HandOffID);?>
+	</dd>
+	
+	<dt id="UserID-label">
+		<label class="required" for="UserID">User ID</label>
+	</dt>
+	<dd id="UserID-element">
+		<?php echo $this->escape($this->ho->UserID);?>
+	</dd>
+	
+	<dt id="HandOffTitle-label">		
+		<label class="required" for="hoEmaHandOffTitleil">ToolName Handoff</label>
+	</dt>
+	<dd id="HandOffTitle-element">
+		<div style="width:470px; overflow : auto;">
+			<?php echo $this->escape($this->ho->HandOffTitle);?>
+		</div>
+	</dd>
+		
+	<dt id="HandOffStartProject-label">
+		<label class="required" for="HandOffStartProject">Handoff Start Project</label>
+	</dt>
+	<dd id="HandOffStartProject-element">
+		<?php echo $this->escape($this->ho->HandOffStartProject);?>
+	</dd>
+		
+	<dt id="HandOffStatus-label">
+		<label class="optional" for="HandOffStatus">Handoff Status</label>
+	</dt>
+	<dd id="HandOffStatus-element">	
+		<?php echo $this->escape($this->ho->HandOffStatus);?>				
+	</dd>
+	
+	<dt id="HandOffSourceLanguageID-label">
+		<label class="optional" for="HandOffSourceLanguageID">Source Language</label>
+	</dt>
+	<dd id="HandOffSourceLanguageID">	
+		<?php echo $this->escape($this->ho->HandOffSourceLanguageName);?>
+	</dd>
+	<dt id="HandOffSourceLanguageID-label">
+		<label class="optional" for="HandOffSourceLanguageID">Target Language</label>
+	</dt>
+	<dd id="HandOffSourceLanguageID">	
+		<div style="width:470px; overflow : auto;">
+			<?php echo $this->escape($this->ho->HandOffTargetLanguageName);?>
+		</div>	
+	</dd>
+	
+	<dt id="SignatureName-label">
+		<label class="optional" for="SignatureName">Signature/Name</label>
+	</dt>
+	<dd id="SignatureName">	
+		<?php echo $this->escape($this->ho->SignatureName);?>
+	</dd>
+		
+	<fieldset style="border: 1px solid #00AACE; margin-bottom:15px">
+		<legend>Localized strings</legend>
+		<?php foreach($this->handOffTargetLanguages as $handOffTargetLanguage):?>				
+				<dt style="width:130px; clear:both;" id="HandOffTargetLanguage-<?php echo $this->escape($handOffTargetLanguage->LanguageID)?>">
+					<label style="padding-left:5px" class="required" for="handOffTargetLanguage-<?php echo $handOffTargetLanguage->LanguageID?>">
+						<?php echo $this->escape($handOffTargetLanguage->LanguageName)?>
+					</label>
+				</dt>
+				<dd style="width:420px; float:left" id="HandOffTargetLanguage-Element-<?php echo $this->escape($handOffTargetLanguage->LanguageID)?>">
+					<div style="width:420px; overflow : auto;">
+						<label>
+							<?php  if($handOffTargetLanguage->HandBackStringLocalization != null && 
+										  $handOffTargetLanguage->HandBackStringLocalization !=""){
+											echo html_entity_decode($handOffTargetLanguage->HandBackStringLocalization);
+										}
+										else{
+											echo "N/A";
+										}
+							?></label>
+					</div>
+				</dd>
+		<?php endforeach;?>		
+	</fieldset>
+	<dt id="submit-label">&nbsp;</dt>
+	<dd id="submit-element">
+		<input type="submit" value="<?php echo $this->escape($this->back);?>" id="submitbutton" name="submit">
+		<input type="submit" value="<?php echo $this->escape($this->exportInExcel);?>" id="exportbutton" name="submit">
+	</dd>
+</dl>

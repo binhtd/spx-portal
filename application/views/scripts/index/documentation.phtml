@@ -1,0 +1,348 @@
+<div style="margin:11px">
+	<p >
+		<img src="<?php echo $this->baseUrl('/images/documents/bento_logo_doc.png');?>" height="113" hspace="0" width="324" border="0">
+	</p>
+	<a name="Top"></a>
+	<h2 >		
+		Welcome to Bento Localization Portal Documentation
+	</h2>
+	<p>
+		This web-based Portal is designed to aid Jonckers' clients with their Strings-Based Localization Handoffs.
+	</p>
+	<a href="<?php echo $this->baseUrl('/ho/index');?>">Back to Bento Localization Portal</a>	
+	<h2>Table of Contents</h2>
+	<p><a href="#Terminology">Terminology</a></p>
+	<p><a href="#Workflow">Workflow</a></p>
+	<p><a href="#Supported_browsers">Supported browsers</a></p>
+	<p>How To</p>
+	<blockquote>
+		<p>A. <a href="#A.">Login</a></p>
+		<p>B. <a href="#B.">Change your Login Password</a></p>
+		<p>C. <a href="#C.">Client-Side Scenarios</a></p>
+		<blockquote>
+			<p>1. <a href="#1.">Create one Handoff</a></p>
+			<p>2. <a href="#2.">Collect localized Strings and Close one Handoff</a></p>
+		</blockquote>
+		<p>D. <a href="#D.">Jonckers Team-Side Scenarios</a></p>
+		<blockquote>
+		<p>1. <a href="#1.">Confirm reception of one Handoff</a></p>
+		<p>2. <a href="#2.Send">Monitor and Send localized Strings back to the client</a></p></blockquote>
+		<p>E. <a href="#E.">Administration Tasks</a></p>
+		<blockquote>
+		<p>1. <a href="#1.">Manage automatic Email templates</a></p>
+		<p dir="ltr" align="left">2. <a href="#2.">Manage Languages</a></p>
+		<p dir="ltr" align="left">3. <a href="#3.">Manage Users</a></p>
+		<p dir="ltr" align="left">4. <a href="#4.">Invoice/Purchase Order management</a></p>
+		</blockquote>
+	</blockquote>
+	<h2 ><a name="Terminology"></a>Terminology</h2>
+	<p >HO: Handoff</p>
+	<p >PM: Project Manager</p>
+	<p >JTE: Jonckers Translation & Engineering</p>
+	<p><a href="#Top">Top</a></p>
+	<h2 ><a name="Workflow"></a>Workflow</h2>
+	<p >
+		The following localization Workflow has been designed. It's an important concept to keep in mind when using the portal to understand the HO Status Naming.
+	</p>
+	<p >
+		<img src="<?php echo $this->baseUrl('/images/documents/Doc_FMS_Portal_Status_WF.JPG');?>" height="348" hspace="0" width="940" border="0">
+	</p>
+	<p >
+		<span class="bold_text">HO - Ready To Loc :</span> Client created a Source String in the portal, HO has been sent to Jonckers Project Manager.
+	</p>
+	<p>
+		<span class="bold_text">HO - Received :</span> Jonckers PM confirmed reception of the HO. Translators receive a notification email with instruction to localize the string.
+	</p>
+	<p>
+		<span class="bold_text">HB - Completed :</span> Jonckers PM confirmed all strings are localized and have been handed back to the client.
+	</p>
+	<p>
+		<span class="bold_text">HO - Closed:</span> Client confirmed reception of the localized strings and closed the HO.
+	</p>
+	<p><a href="#Top">Top</a></p>
+	<a name="Supported_browsers"></a>
+	<h2>Fully supported browsers:</h2>
+	<p>Internet Explorer 8.0 <a href="http://www.microsoft.com/windows/ie/downloads/default.asp">http://www.microsoft.com/windows/ie/downloads/default.asp</a></p>
+	<p>Google Chrome <a href="http://www.google.com/chrome">http://www.google.com/chrome</a></p>
+	<p>Firefox 4.0+ <a href="http://www.mozilla.com/en-US/firefox/all.html">http://www.mozilla.com/en-US/firefox/all.html</a></p>
+	<p><a href="#Top">Top</a></p>
+	<h2 >HOW TO</h2>
+	<a name="A." login=""></a>
+	<h3>A. Login</h3>
+	<p>
+		If you need an account, please contact your Jonckers representative via Email. You can also Use the
+		<span class="bold_text">Create a Bento Account</span> Link.
+	</p>
+	<p>
+		If you forgot your Login or Password, you can send us an email via the appropriate
+		<span class="bold_text">Forgot Password?</span> Link.
+	</p>
+	<p>
+		<img alt="Login Screen" src="<?php echo $this->baseUrl('/images/documents/Login.jpg');?>" height="160" hspace="0" width="304" border="0">
+	</p>
+	<a href="#Top">Top</a>
+	<a name="B."></a>
+	<h3>B. Change your Login password</h3>
+	<p>
+		After Login, You have opportunity to change your password in the <span class="bold_text">MY ACCOUNT</span> tab.
+	</p>
+	<p>
+		<img src="<?php echo $this->baseUrl('/images/documents/MyAccount_tab.jpg');?>" height="270" hspace="0" width="859" border="0">
+	</p>
+	<a href="#Top">Top</a>
+	<a name="C."></a>
+	<h3>C. Client-Side Scenarios</h3>
+	<p>
+		These Features are designed to work only for Jonckers Client profiles.
+	</p>
+	<a name="1."></a>
+	<h3>1. Create one String-based Handoff</h3>
+	<p>
+		In <span class="bold_text">STRINGS HANDOFF</span> tab, click the <span class="bold_text">Add new handoff</span> link.
+		<img src="<?php echo $this->baseUrl('/images/documents/AddNewHO.jpg');?>" height="18" hspace="0" width="118" border="0">
+	</p>
+	<p>The following screen appears.</p>
+	<p>
+		<img src="<?php echo $this->baseUrl('/images/documents/AddNewHO_page.jpg');?>" height="493" hspace="0" width="636" border="0">
+	</p>
+	<p>
+		<span class="bold_text">Source String</span>: Enter the Source String to be sent out to localization. 
+	</p>
+	<p>
+		<span class="bold_text">Handoff Date</span>: This date is automatically set by the System.
+	</p>
+	<p>
+		<span class="bold_text">Handoff Source LanguageID</span>: Select ONE source language.
+	</p>
+	<p>
+		<span class="bold_text">Handoff List Target LanguageID</span>: Select one or multiple target languages.
+	</p>
+		In case you are missing languages, Please contact your Jonckers PM, it can be easily added.
+	</p>
+	<p>
+		<span class="bold_text">Handoff Instruction</span>: Write any Comment or Instructions for your Handoff that you want to pass on to Jonckers Team. This text will be included in the Notification Email. This area is rich text format enabled and allows you to add any kind of formatted text, such as hyperlinks.
+	</p>
+	<p>
+		<span class="bold_text">Send to Jonckers</span>: This button saves the Handoff information and send it to Jonckers. The Handoff status is now set as "HO - ReadyToLoc".  
+		<img src="<?php echo $this->baseUrl('/images/documents/HoStatus_readyToloc.JPG');?>" height="51" hspace="0" width="120" border="0">. It also informs Jonckers Team via email that your String is ready to be localized. 
+	</p>
+	
+	<p>
+		Notes:
+	</p>
+	<p>
+		In case the Source String has already been submitted in a previous HO, Bento will reject your request with an error message. 
+	</p>
+	<p>	
+		You will not be able to do any further changes in your Handoff. 
+	</p>
+		
+	</p>
+	<a href="#Top">Top</a>
+	<a name="2."></a>
+	<h3>2. Collect localized Strings and Close one Handoff</h3>
+	<p>
+		After localization of the String into all target languages, Jonckers PM will Set the HO as "HB - Completed". Client will be notified by email.
+	</p>
+	<p>
+		At this stage, Client will be able to See the Localized Strings in the HO Details. Alternatively Client can export localized strings in an Excel Spreadsheet format.
+	</p>
+	<p>
+	Client confirms reception of Jonckers' HB by Closing the HO.
+	</p>
+	<p>
+		To close the HO, In HANDOFF tab, click Edit
+		<img src="<?php echo $this->baseUrl('/images/documents/EditHBCompletedLink.JPG');?>" height="20" hspace="0" width="78" border="0"> for your HO, change its status to <span class="bold_text">HO - Closed</span> and <span class="bold_text">Save</span>.
+	</p>
+	<p>
+		You can choose whether you want to inform Jonckers PM of this status change by keeping the checkbox activated (recommended) or not.
+	</p>
+	<p>
+		<img src="<?php echo $this->baseUrl('/images/documents/SetHOasClosed2.JPG');?>" height="48" hspace="0" width="516" border="0">
+	</p>
+	<p>
+		You will still be able to see/download localized strings in HO Details page, after closure of the HO.
+	</p>
+	<a href="#Top">Top</a>
+	<a name="D."></a>
+	<h3>D. Jonckers Team-Side Scenarios</h3>
+	<p>
+		These Features are designed to work only for Jonckers Project Managers (PM) profiles.
+	</p>
+	<a name="1." handoff="" one="" of="" reception="" confirm=""></a>
+	<h3>1. Confirm reception of one Handoff</h3>
+	
+	<p>
+		For <a href="#Workflow">Workflow</a> Compliance, you are entitled to Confirm reception of one Handoff only when its status is set as "HO - ReadyToLoc".
+	</p>
+	<p>
+		In HANDOFF tab, search for your HO to be edited and click Edit
+		<img src="<?php echo $this->baseUrl('/images/documents/EditHBCompletedLink.JPG');?>" height="20" hspace="0" width="78" border="0">.
+	</p>
+	<p>
+		Change the Handoff Status to <span class="bold_text">HO - Received.</span>
+	</p>
+	<p>
+		<img src="<?php echo $this->baseUrl('/images/documents/SetHOasReceived.JPG');?>" height="40" hspace="0" width="253" border="0">
+	</p>
+
+	<p>
+	Note that users with Jonckers PM role, are authorized to edit any localized String.	
+	</p>
+	
+	<p>Click <span class="bold_text">Save</span>.</p>
+		<p>
+		This action will Send one Email notification to the translators. Only Translators who have the Source and Target language combination Matching the requested Client Language combination will be notified. 
+	</p>
+  <p>
+	The Jonckers Project Manager will also receive a Summary report email to monitor that all requested languages from the client have at least one translator assigned to each of them.
+	</p>		
+		
+	<a href="#Top">Top</a>
+	<a name="2.Send"></a>
+	<h3>
+		<p>2. Monitor and Send localized Strings back to the client</p>
+	</h3>
+	<p>
+		Note that for <a href="#Workflow">Workflow</a> Compliance, you are entitled to send Strings back to the client only if the Ho Status is currently set as "HO - received" AND all languages have been localized.
+	</p>
+	<p>
+		You can Visually monitor If all languages have been localized by checking the columns in STRING HANDOFF Tab.
+		<img src="<?php echo $this->baseUrl('/images/documents/numberoflangslocalized.jpg');?>" height="68" hspace="0" width="155" border="0">.
+ </p>
+ <p>
+ 	A red Number in the <span class="bold_text">#Languages localized</span> Column means that NOT all languages have been handled.
+</p>
+ <p>
+ 	A red "HO - Received" Status in the <span class="bold_text">Status</span>Column means that all languages have been localized and that the Handoff Status now requires to be changed to the next stage: "Handback completed".
+</p>
+<p>
+	<img src="<?php echo $this->baseUrl('/images/documents/HOReceivedinred.jpg');?>" height="65" hspace="0" width="279" border="0">.
+</p>
+<p>
+		To inform your client via email that localized strings are ready, simply edit the Handoff and change the Status as "HB - Completed". 
+		<img src="<?php echo $this->baseUrl('/images/documents/SetHOasHBCompleted.JPG');?>" height="60" hspace="0" width="495" border="0">
+	</p>
+	<p>
+		You will not be able to do any further changes for this Handoff.
+	</p>
+	<a href="#Top">Top</a>
+	<a name="E." tasks="" administration=""></a>
+	<h3>E. Administration Tasks</h3>
+	<p>
+		Jonckers PM role has some admin rights to facilitate basic Bento Tasks handling.
+	</p>
+	<a name="1."></a>
+	<h3>1. Manage Users </h3>
+	<p>
+		In <span class="bold_text">USER</span> Tab, you can see Users account Details for Client, Jonckers PM and Translators.
+	</p>
+	<p>You can Edit Details for your own account.</p>
+	<p>
+		You can add a new user, by using the <span class="bold_text">Add new user</span> link <img src="<?php echo $this->baseUrl('/images/documents/AddNewUserLink.JPG');?>" height="83" hspace="0" width="297" border="0">.
+	</p>
+	<p>Here is a description of the Add new User page.</p>
+	<p>
+		<img src="<?php echo $this->baseUrl('/images/documents/AddNewUserPage.JPG');?>" height="287" hspace="0" width="520" border="0">
+	</p>
+	<p>
+		<span class="bold_text">User Name:</span> Real Name of the User<br><span class="bold_text">User Email:</span> Email of the user. Used for email notifications.<br><span class="bold_text">User Login Name:</span> Login name of the user, used for the login<br><span class="bold_text">Password: </span>Password<br><span class="bold_text">Confirm Password: 
+		</span>Password<br><span class="bold_text">Roles:</span>&nbsp; Select Either <span class="bold_text">User Is 
+		Client&nbsp;</span>or <span class="bold_text">User Is 
+		Translator&nbsp;</span> or <span class="bold_text">User</span> <span class="bold_text">Is Jonckers PM</span>, 
+		according to the Needed role for the user.<br><span class="bold_text">JTE Project Manager Email:</span> When 
+		user has a&nbsp;Client Role, it needs to be associated with a Jonckers PM Email 
+		address that will be used for email notifications. This email address can be an 
+		alias, so you can include more than one person. If you need to create one 
+		Jonckers Alias,&nbsp;please contact ICT team.
+	</p>
+	<p><span class="bold_text">User Is Active:</span> Keep the checkbox activated 
+	unless you want to create an Inactive account.</p>
+	
+	<p>If you are adding a Translator profile, you will have to define the Languages Source/Target Combination handled by this user.</p>
+	<p>
+		<img src="<?php echo $this->baseUrl('/images/documents/AddNewUserPage_trans.JPG');?>" height="440" hspace="0" width="608" border="0">
+	</p>
+	
+	<p>If you need to perform actions on user's accounts you 
+	don't have permission for, please <a href="<?php echo $this->baseUrl('/index/contact/'); ?>">contact us</a>.</p>
+	<a href="#Top">Top</a>
+	<a name="2."></a>
+	<h3>
+		<p>2. Manage Languages</p>
+	</h3>
+	<p>
+		In <span class="bold_text">LANGUAGE </span>Tab, you can Edit Source/Target language Lists, and Add any new language.
+	</p>
+	<p>
+		To Edit Source/Target  language Lists, click on Edit link for the language you want to change.
+	</p>
+	<p>
+		Spanish (Argentina) is shown here as an example:
+	</p>
+	<p>
+		<img src="<?php echo $this->baseUrl('/images/documents/EditLanguage_Link.JPG');?>" height="53" hspace="0" width="625" border="0">
+	</p>
+	<p>The Edit Language page displays:</p>
+	<p>
+		<img src="<?php echo $this->baseUrl('/images/documents/EditLanguage_page.JPG');?>" height="177" hspace="0" width="638" border="0">
+	</p>
+	<p>
+		<span class="bold_text">Language Name</span>: You can edit the language 
+		Name<br><span class="bold_text">Language is active</span>: Uncheck the checkbox if you want to 
+		deactivate the language<br><span class="bold_text">Present in Source List</span>: Check the 
+		checkbox if you want to display the language in Source languages List 
+		(when creating one HO).<br><span class="bold_text">Present in Target List</span>: Check the 
+		checkbox if you want to display the language in Target languages 
+		List (when creating one HO).
+	</p>
+	<p>
+		To Add a Language which is not present in the Portal, click on Add new language link In <span class="bold_text">LANGUAGE </span>Tab
+		<img src="<?php echo $this->baseUrl('/images/documents/AddNewlanguageLink.jpg');?>" height="18" hspace="0" width="99" border="0">.
+	</p>
+	<a href="#Top">Top</a>
+	<a name="3."></a>
+	<h3>3. Manage automatic Email templates</h3>
+	<p>
+		You can Manage the email templates in <span class="bold_text">EMAIL</span> module.
+	</p>
+	<p>
+		According to the Portal's Workflow, it currently handles 4 types of email notification.
+	</p>
+	<p>
+		<img src="<?php echo $this->baseUrl('/images/documents/EmailTemplateStatus.JPG');?>" height="148" hspace="0" width="121" border="0">
+	</p>
+	<p>
+		To create a new email template, click on Add new email template 
+		<img src="<?php echo $this->baseUrl('/images/documents/AddNewEmailTemplateLink.JPG');?>" height="16" hspace="0" width="122" border="0">.
+	</p>
+	<p>
+		Be aware that if you create a new email template for one given Status, it will automatically deactivate the one currently in use.
+	</p>
+	<p>
+		Please <a href="<?php echo $this->baseUrl('/index/contact/'); ?>">contact us</a> if you need assistance.
+	</p>
+	<a href="#Top">Top</a>
+	<a name="4."></a>
+	<h3>4. Invoice/Purchase Order management</h3>
+		<p>
+		For this String-based Portal, Invoices to client and Purchase orders for translators are managed per Localized Item basis.
+	</p>
+	<p>
+		You can perform an export of the Strings and their count numbers for Accountancy purposes in the <span class="bold_text">EXPORT</span> module.
+	</p>
+	<p>
+		<img src="<?php echo $this->baseUrl('/images/documents/export_module.JPG');?>" height="162" hspace="0" width="343" border="0">
+	</p>
+	<p>
+	To get a count of Localized Strings for Client Invoice purposes, select your Start and End Date, select <span class="bold_text">Client invoice</span> and click <span class="bold_text">Export</span>.
+	</p>
+	<p>
+	To get a count of Localized Strings per translator for Purchase Order purposes, select your Start and End Date, select <span class="bold_text">Translators PO</span> and click <span class="bold_text">Export</span>.
+	</p>
+	<a href="#Top">Top</a>
+	<h3>Z. Documentation History</h3>
+	<p>July 07-27-2011 - Draft page for V1.00 created.</p>
+	<p>August 08-30-2011 - Page for V1.00 Release candidate updated.</p>
+	<a href="<?php echo $this->baseUrl('/ho/index');?>">Back to Bento Portal</a>	
+</div>

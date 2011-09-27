@@ -1,0 +1,1 @@
+"php.exe" -f "ChangeSMTPConfig.php"
